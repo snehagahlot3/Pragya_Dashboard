@@ -11,7 +11,6 @@ import SessionsTab from './components/tabs/SessionsTab';
 import EngagementTab from './components/tabs/EngagementTab';
 import ComprehensionTab from './components/tabs/ComprehensionTab';
 import RetentionTab from './components/tabs/RetentionTab';
-import RawDataTab from './components/tabs/RawDataTab';
 
 import './styles/dashboard.css';
 
@@ -34,8 +33,6 @@ export default function App() {
         return <ComprehensionTab classFilter={classFilter} activityFilter={activityFilter} />;
       case 'retention':
         return <RetentionTab />;
-      case 'rawdata':
-        return <RawDataTab />;
       default:
         return <OverviewTab />;
     }

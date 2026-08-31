@@ -5,8 +5,7 @@ import {
   BookOpen, 
   Sparkles, 
   Brain, 
-  Bookmark, 
-  Table 
+  Bookmark 
 } from 'lucide-react';
 
 export const TABS = [
@@ -15,8 +14,7 @@ export const TABS = [
   { id: 'sessions', label: 'Sessions & Activities', icon: BookOpen },
   { id: 'engagement', label: 'Engagement', icon: Sparkles },
   { id: 'comprehension', label: 'Comprehension', icon: Brain },
-  { id: 'retention', label: 'Retention & Vocabulary', icon: Bookmark, badge: 'In Progress' },
-  { id: 'rawdata', label: 'Raw Data', icon: Table }
+  { id: 'retention', label: 'Retention & Vocabulary', icon: Bookmark, badge: 'In Progress' }
 ];
 
 export default function NavigationTabs({ activeTab, onTabChange }) {

@@ -93,13 +93,6 @@ export default function OverviewTab() {
       {/* Top Executive Headline Cards */}
       <div className="kpi-grid">
         <MetricCard
-          title="Total Students Enrolled"
-          value={stats.totalEnrolled}
-          subtitle="Classes 1–5 across Government Pilot School"
-          icon={Users}
-          accent="plum"
-        />
-        <MetricCard
           title="Total Sessions Delivered"
           value={stats.totalSessions}
           subtitle="Interactive activity workshops completed"
@@ -112,13 +105,6 @@ export default function OverviewTab() {
           subtitle={`Cumulative student attendances (${stats.uniqueAttendanceTotal} unique)`}
           icon={UserCheck}
           accent="plum"
-        />
-        <MetricCard
-          title="Overall Attendance Rate"
-          value={formatPercent(stats.overallAttendancePercent)}
-          subtitle="Average student attendance across sessions"
-          icon={Percent}
-          accent="butter"
         />
         <MetricCard
           title="Overall Engagement Rate"
@@ -157,7 +143,7 @@ export default function OverviewTab() {
       <div className="section-card">
         <div className="section-title-group">
           <h3 className="section-title">Pilot Key Performance Overview</h3>
-          <p className="section-caption">Aggregated performance indicators comparing attendance, active engagement, and comprehension across all 10 delivered sessions.</p>
+          <p className="section-caption">Aggregated performance indicators comparing attendance, active engagement, and comprehension across all 15 delivered sessions.</p>
         </div>
 
         <div style={{ height: '320px', position: 'relative' }}>

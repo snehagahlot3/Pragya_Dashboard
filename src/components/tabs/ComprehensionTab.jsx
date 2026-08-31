@@ -33,14 +33,14 @@ export default function ComprehensionTab({ classFilter, activityFilter }) {
     : 0;
 
   // Chart setup
-  const chartLabels = heldItems.map(item => `C${item.class} - ${item.activityName}`);
+  const chartLabels = heldItems.map(item => item.activityName);
   const comprehensionRates = heldItems.map(item => +(item.comprehensionRate * 100).toFixed(1));
 
   const chartData = {
     labels: chartLabels,
     datasets: [
       {
-        label: 'Comprehension Rate (%)',
+        label: 'Class - Activity',
         data: comprehensionRates,
         backgroundColor: '#C9C1E3',
         hoverBackgroundColor: '#3A3350',
@@ -55,7 +55,14 @@ export default function ComprehensionTab({ classFilter, activityFilter }) {
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
-      legend: { display: false },
+      legend: {
+        display: true,
+        position: 'top',
+        labels: {
+          font: { family: 'Inter', weight: '600', size: 12 },
+          color: '#3A3350'
+        }
+      },
       tooltip: {
         callbacks: {
           label: (context) => ` Comprehension Rate: ${context.parsed.y}%`
@@ -152,19 +159,15 @@ export default function ComprehensionTab({ classFilter, activityFilter }) {
               </tr>
             </thead>
             <tbody>
-              {matrix.map((row, idx) => (
+              {matrix.filter(row => row.hasHeld).map((row, idx) => (
                 <tr key={idx}>
                   <td><strong>Class {row.class}</strong></td>
                   <td>{row.activityName}</td>
-                  <td>{row.hasHeld ? row.workshopHeadcount : <span className="empty-cell">—</span>}</td>
-                  <td>{row.hasHeld ? row.goodComprehensionCount : <span className="empty-cell">—</span>}</td>
-                  <td>{row.hasHeld ? formatPercent(row.comprehensionRate) : <span className="empty-cell">—</span>}</td>
+                  <td>{row.workshopHeadcount}</td>
+                  <td>{row.goodComprehensionCount}</td>
+                  <td>{formatPercent(row.comprehensionRate)}</td>
                   <td>
-                    {row.hasHeld ? (
-                      <ThresholdBadge rate={row.comprehensionRate} />
-                    ) : (
-                      <span className="empty-cell">—</span>
-                    )}
+                    <ThresholdBadge rate={row.comprehensionRate} />
                   </td>
                 </tr>
               ))}

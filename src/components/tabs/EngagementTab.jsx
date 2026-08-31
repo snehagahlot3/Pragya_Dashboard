@@ -33,14 +33,14 @@ export default function EngagementTab({ classFilter, activityFilter }) {
     : 0;
 
   // Chart setup
-  const chartLabels = heldItems.map(item => `C${item.class} - ${item.activityName}`);
+  const chartLabels = heldItems.map(item => item.activityName);
   const engagementRates = heldItems.map(item => +(item.engagementRate * 100).toFixed(1));
 
   const chartData = {
     labels: chartLabels,
     datasets: [
       {
-        label: 'Engagement Rate (%)',
+        label: 'Class - Activity',
         data: engagementRates,
         backgroundColor: '#3A3350',
         borderRadius: 6
@@ -52,7 +52,14 @@ export default function EngagementTab({ classFilter, activityFilter }) {
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
-      legend: { display: false },
+      legend: {
+        display: true,
+        position: 'top',
+        labels: {
+          font: { family: 'Inter', weight: '600', size: 12 },
+          color: '#3A3350'
+        }
+      },
       tooltip: {
         callbacks: {
           label: (context) => ` Engagement Rate: ${context.parsed.y}%`
@@ -149,19 +156,15 @@ export default function EngagementTab({ classFilter, activityFilter }) {
               </tr>
             </thead>
             <tbody>
-              {matrix.map((row, idx) => (
+              {matrix.filter(row => row.hasHeld).map((row, idx) => (
                 <tr key={idx}>
                   <td><strong>Class {row.class}</strong></td>
                   <td>{row.activityName}</td>
-                  <td>{row.hasHeld ? row.workshopHeadcount : <span className="empty-cell">—</span>}</td>
-                  <td>{row.hasHeld ? row.engagedCount : <span className="empty-cell">—</span>}</td>
-                  <td>{row.hasHeld ? formatPercent(row.engagementRate) : <span className="empty-cell">—</span>}</td>
+                  <td>{row.workshopHeadcount}</td>
+                  <td>{row.engagedCount}</td>
+                  <td>{formatPercent(row.engagementRate)}</td>
                   <td>
-                    {row.hasHeld ? (
-                      <ThresholdBadge rate={row.engagementRate} />
-                    ) : (
-                      <span className="empty-cell">—</span>
-                    )}
+                    <ThresholdBadge rate={row.engagementRate} />
                   </td>
                 </tr>
               ))}

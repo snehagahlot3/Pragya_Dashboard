@@ -36,7 +36,7 @@ export default function RetentionTab() {
               </tr>
             </thead>
             <tbody>
-              {matrix.map((row, idx) => (
+              {matrix.filter(row => row.hasHeld).map((row, idx) => (
                 <tr key={idx}>
                   <td><strong>Class {row.class}</strong></td>
                   <td>{row.activityName}</td>
@@ -48,17 +48,13 @@ export default function RetentionTab() {
                         </span>
                       ))
                     ) : (
-                      <span className="empty-cell">— (No formal terms introduced)</span>
+                      <span className="empty-cell">Not applicable</span>
                     )}
                   </td>
                   <td>
-                    {row.hasHeld ? (
-                      <span style={{ fontSize: '0.8rem', color: 'var(--plum)', fontWeight: 600 }}>
-                        Session Complete
-                      </span>
-                    ) : (
-                      <span className="empty-cell">—</span>
-                    )}
+                    <span style={{ fontSize: '0.8rem', color: 'var(--plum)', fontWeight: 600 }}>
+                      Session Complete
+                    </span>
                   </td>
                 </tr>
               ))}
@@ -75,7 +71,7 @@ export default function RetentionTab() {
           </div>
           <h4>Vocabulary Retention Assessment</h4>
           <p style={{ marginTop: '0.5rem', marginBottom: '1rem' }}>
-            Data Status: <strong style={{ color: 'var(--plum)' }}>Not yet collected</strong>
+            Data Status: <strong style={{ color: 'var(--plum)' }}>To be collected at the end of the pilot</strong>
           </p>
           <p>
             Post-session retention tests measuring student recognition and recall of core vocabulary terms are scheduled for delivery 4 weeks post-activity.
@@ -88,7 +84,7 @@ export default function RetentionTab() {
           </div>
           <h4>Long-Term Longitudinal Retention</h4>
           <p style={{ marginTop: '0.5rem', marginBottom: '1rem' }}>
-            Data Status: <strong style={{ color: 'var(--plum)' }}>Not yet collected</strong>
+            Data Status: <strong style={{ color: 'var(--plum)' }}>To be collected at the end of the pilot</strong>
           </p>
           <p>
             Longitudinal evaluation assessing concept persistence into the subsequent school term will commence following completion of all 5 planned activities.

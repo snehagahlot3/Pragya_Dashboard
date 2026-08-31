@@ -23,13 +23,13 @@ export default function SessionsTab({ classFilter, activityFilter }) {
     Object.entries(classSessionObj).forEach(([code, count]) => {
       if (actIdStr === '1' && code.startsWith('1.')) {
         matchingSessionCodes.push(code);
-        sessionHeadcounts.push(`${code}: ${count} stds`);
+        sessionHeadcounts.push(`${code}: ${count}`);
       } else if (actIdStr === '2' && code.startsWith('2.')) {
         matchingSessionCodes.push(code);
-        sessionHeadcounts.push(`${code}: ${count} stds`);
+        sessionHeadcounts.push(`${code}: ${count}`);
       } else if (actIdStr === '3' && code.startsWith('3.')) {
         matchingSessionCodes.push(code);
-        sessionHeadcounts.push(`${code}: ${count} stds`);
+        sessionHeadcounts.push(`${code}: ${count}`);
       }
     });
 
@@ -73,22 +73,18 @@ export default function SessionsTab({ classFilter, activityFilter }) {
               </tr>
             </thead>
             <tbody>
-              {sessionBreakdown.map((row, idx) => (
+              {sessionBreakdown.filter(row => row.hasHeld).map((row, idx) => (
                 <tr key={idx}>
                   <td><strong>Class {row.class}</strong></td>
                   <td>{row.activityName}</td>
                   <td>
-                    {row.hasHeld ? (
-                      <span style={{ fontWeight: 700 }}>
-                        {typeof row.sessionCount === 'string' ? row.sessionCount.replace('*', '') : row.sessionCount}
-                      </span>
-                    ) : (
-                      <span className="empty-cell">—</span>
-                    )}
+                    <span style={{ fontWeight: 700 }}>
+                      {typeof row.sessionCount === 'string' ? row.sessionCount.replace('*', '') : row.sessionCount}
+                    </span>
                   </td>
                   <td>{row.sessionCodes}</td>
                   <td>{row.sessionHeadcounts}</td>
-                  <td>{row.hasHeld ? row.workshopHeadcount : <span className="empty-cell">—</span>}</td>
+                  <td>{row.workshopHeadcount}</td>
                 </tr>
               ))}
             </tbody>

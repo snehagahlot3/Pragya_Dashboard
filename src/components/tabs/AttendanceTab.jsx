@@ -35,7 +35,7 @@ export default function AttendanceTab({ classFilter, activityFilter }) {
     : 0;
 
   // Chart data setup
-  const chartLabels = heldItems.map(item => `C${item.class} - ${item.activityName}`);
+  const chartLabels = heldItems.map(item => item.activityName);
   const attendancePercentages = heldItems.map(item => +(item.attendancePercent * 100).toFixed(1));
 
   const chartData = {
@@ -55,7 +55,14 @@ export default function AttendanceTab({ classFilter, activityFilter }) {
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
-      legend: { display: false },
+      legend: {
+        display: true,
+        position: 'top',
+        labels: {
+          font: { family: 'Inter', weight: '600', size: 12 },
+          color: '#3A3350'
+        }
+      },
       tooltip: {
         callbacks: {
           label: (context) => ` Attendance Rate: ${context.parsed.y}%`
@@ -101,11 +108,6 @@ export default function AttendanceTab({ classFilter, activityFilter }) {
 
       {/* Summary Chips for Filtered View */}
       <div className="kpi-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))' }}>
-        <div className="kpi-card accent-plum">
-          <div className="kpi-title">Filtered Classes Strength</div>
-          <div className="kpi-value">{filterEnrolledTotal}</div>
-          <div className="kpi-subtitle">Total registered students</div>
-        </div>
         <div className="kpi-card accent-butter">
           <div className="kpi-title">Unique Attendance</div>
           <div className="kpi-value">{filterAttendanceTotal}</div>
@@ -115,11 +117,6 @@ export default function AttendanceTab({ classFilter, activityFilter }) {
           <div className="kpi-title">Workshop Headcount</div>
           <div className="kpi-value">{filterWorkshopTotal}</div>
           <div className="kpi-subtitle">Cumulative attendances across all sessions</div>
-        </div>
-        <div className="kpi-card accent-butter">
-          <div className="kpi-title">Average Attendance Rate</div>
-          <div className="kpi-value">{formatPercent(filterAttendanceAvg)}</div>
-          <div className="kpi-subtitle">Average across selected sessions</div>
         </div>
       </div>
 
@@ -168,14 +165,14 @@ export default function AttendanceTab({ classFilter, activityFilter }) {
               </tr>
             </thead>
             <tbody>
-              {matrix.map((row, idx) => (
+              {matrix.filter(row => row.hasHeld).map((row, idx) => (
                 <tr key={idx}>
                   <td><strong>Class {row.class}</strong></td>
                   <td>{row.activityName}</td>
                   <td>{row.strength}</td>
-                  <td>{row.hasHeld ? row.attendanceCount : <span className="empty-cell">—</span>}</td>
-                  <td>{row.hasHeld ? formatPercent(row.attendancePercent) : <span className="empty-cell">—</span>}</td>
-                  <td>{row.hasHeld ? row.workshopHeadcount : <span className="empty-cell">—</span>}</td>
+                  <td>{row.attendanceCount}</td>
+                  <td>{formatPercent(row.attendancePercent)}</td>
+                  <td>{row.workshopHeadcount}</td>
                 </tr>
               ))}
             </tbody>
