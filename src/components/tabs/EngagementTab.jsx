@@ -136,7 +136,7 @@ export default function EngagementTab({ classFilter, activityFilter }) {
         <div className="chart-caption-box">
           <Info size={18} />
           <span>
-            <strong>Plain English Summary:</strong> Engagement is consistently high across all classes (86.2% – 98.2%), significantly exceeding the 70% success benchmark.
+            <strong>Summary:</strong> Engagement is consistently high across all classes (86.2% – 98.2%), significantly exceeding the 70% success benchmark.
           </span>
         </div>
       </div>

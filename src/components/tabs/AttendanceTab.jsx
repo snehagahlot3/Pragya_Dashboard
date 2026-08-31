@@ -145,7 +145,7 @@ export default function AttendanceTab({ classFilter, activityFilter }) {
         <div className="chart-caption-box">
           <Info size={18} />
           <span>
-            <strong>Plain English Summary:</strong> Attendance ranged from 62.8% to 85.3% across cohorts, with Class 1 (Activity 3) recording the highest single-session turnout.
+            <strong>Summary:</strong> Attendance ranged from 62.8% to 85.3% across cohorts, with Class 1 (Activity 3) recording the highest single-session turnout.
           </span>
         </div>
       </div>

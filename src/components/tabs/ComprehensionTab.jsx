@@ -136,7 +136,7 @@ export default function ComprehensionTab({ classFilter, activityFilter }) {
         <div className="chart-caption-box">
           <Info size={18} />
           <span>
-            <strong>Plain English Summary:</strong> Over 90% of participating students successfully comprehend foundational AI concepts without technical jargon. All active cohorts comfortably satisfy the 70% threshold requirement.
+            <strong>Summary:</strong> Over 90% of participating students successfully comprehend foundational AI concepts without technical jargon. All active cohorts comfortably satisfy the 70% threshold requirement.
           </span>
         </div>
       </div>

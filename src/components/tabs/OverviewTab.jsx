@@ -163,7 +163,7 @@ export default function OverviewTab() {
         <div className="chart-caption-box">
           <Info size={18} />
           <span>
-            <strong>Plain English Summary:</strong> While baseline attendance averages 72.9%, participating students show exceptional engagement (95.7%) and strong conceptual understanding (90.8%) across hands-on AI activities.
+            <strong>Summary:</strong> While baseline attendance averages 72.9%, participating students show exceptional engagement (95.7%) and strong conceptual understanding (90.8%) across hands-on AI activities.
           </span>
         </div>
       </div>
