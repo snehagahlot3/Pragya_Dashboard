@@ -21,7 +21,7 @@ export default function RawDataTab() {
       'Enrolled Strength',
       'Activity ID',
       'Activity Name',
-      'Unique Attendance Count',
+      'Number of Students in Sessions',
       'Attendance Percent',
       'Sessions Count',
       'Workshop Headcount',
@@ -88,7 +88,7 @@ export default function RawDataTab() {
                 <th>Class</th>
                 <th>Strength</th>
                 <th>Activity</th>
-                <th>Unique Att.</th>
+                <th>Students in Sessions</th>
                 <th>Att. %</th>
                 <th>Sessions</th>
                 <th>Workshop Headcount</th>

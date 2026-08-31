@@ -1,6 +1,7 @@
 import React from 'react';
-import { getFilteredMatrix, formatPercent, PRAGYA_DATA, SUCCESS_THRESHOLD } from '../../data/pragyaData';
+import { getFilteredMatrix, formatPercent, PRAGYA_DATA, SUCCESS_THRESHOLD, getActivityColor } from '../../data/pragyaData';
 import ThresholdBadge from '../ThresholdBadge';
+import ActivityLegend from '../ActivityLegend';
 import { Brain, Info, CheckCircle2, Award } from 'lucide-react';
 import {
   Chart as ChartJS,
@@ -32,20 +33,20 @@ export default function ComprehensionTab({ classFilter, activityFilter }) {
     ? (heldItems.reduce((acc, item) => acc + (item.comprehensionRate || 0), 0) / heldItems.length)
     : 0;
 
-  // Chart setup
-  const chartLabels = heldItems.map(item => item.activityName);
+  // Chart setup with activity-specific colors
+  const chartLabels = heldItems.map(item => `Class ${item.class}: ${item.activityName}`);
   const comprehensionRates = heldItems.map(item => +(item.comprehensionRate * 100).toFixed(1));
 
   const chartData = {
     labels: chartLabels,
     datasets: [
       {
-        label: 'Class - Activity',
+        label: 'Comprehension Rate (%)',
         data: comprehensionRates,
-        backgroundColor: '#C9C1E3',
-        hoverBackgroundColor: '#3A3350',
-        borderColor: '#3A3350',
-        borderWidth: 1,
+        backgroundColor: heldItems.map(item => getActivityColor(item.activityId, 'bg')),
+        hoverBackgroundColor: heldItems.map(item => getActivityColor(item.activityId, 'hoverBg')),
+        borderColor: heldItems.map(item => getActivityColor(item.activityId, 'border')),
+        borderWidth: 1.5,
         borderRadius: 6
       }
     ]
@@ -55,16 +56,14 @@ export default function ComprehensionTab({ classFilter, activityFilter }) {
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
-      legend: {
-        display: true,
-        position: 'top',
-        labels: {
-          font: { family: 'Inter', weight: '600', size: 12 },
-          color: '#3A3350'
-        }
-      },
+      legend: { display: false },
       tooltip: {
         callbacks: {
+          title: (items) => {
+            const idx = items[0].dataIndex;
+            const item = heldItems[idx];
+            return item ? `Class ${item.class}: ${item.activityName}` : items[0].label;
+          },
           label: (context) => ` Comprehension Rate: ${context.parsed.y}%`
         }
       }
@@ -121,9 +120,12 @@ export default function ComprehensionTab({ classFilter, activityFilter }) {
         </div>
 
         {heldItems.length > 0 ? (
-          <div style={{ height: '320px', position: 'relative' }}>
-            <Bar data={chartData} options={chartOptions} />
-          </div>
+          <>
+            <div style={{ height: '320px', position: 'relative' }}>
+              <Bar data={chartData} options={chartOptions} />
+            </div>
+            <ActivityLegend />
+          </>
         ) : (
           <div className="in-progress-card">
             <h4>No Sessions Recorded</h4>

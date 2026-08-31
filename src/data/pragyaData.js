@@ -4,6 +4,36 @@ export const SUCCESS_THRESHOLD = {
   postAssessment: 0.70,  // placeholder — Stravelle team will finalize this number
 };
 
+// Activity Color Palette (Unified across all dashboard bar graphs)
+export const ACTIVITY_COLORS = {
+  1: {
+    bg: '#3A3350',          // Deep Plum (Signature Stravelle theme anchor)
+    border: '#2A2438',
+    hoverBg: '#2A2438',
+    name: 'Mithu Miyaan',
+    label: 'Activity 1: Mithu Miyaan'
+  },
+  2: {
+    bg: '#7E6FA9',          // Rich Lavender (Theme accent color with contrast)
+    border: '#62548C',
+    hoverBg: '#695A94',
+    name: 'Konsa Kiska Ghar',
+    label: 'Activity 2: Konsa Kiska Ghar'
+  },
+  3: {
+    bg: '#E5A823',          // Warm Amber Gold (Theme butter accent made bold & readable)
+    border: '#C68A1B',
+    hoverBg: '#C68A1B',
+    name: 'Aage Kya Aayega',
+    label: 'Activity 3: Aage Kya Aayega'
+  }
+};
+
+export function getActivityColor(activityId, type = 'bg') {
+  const act = ACTIVITY_COLORS[activityId] || ACTIVITY_COLORS[1];
+  return act[type] || act.bg;
+}
+
 export const PRAGYA_DATA = {
   meta: {
     schoolYear: "2026-27",

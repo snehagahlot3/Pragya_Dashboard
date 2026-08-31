@@ -1,5 +1,6 @@
 import React from 'react';
-import { getFilteredMatrix, formatPercent, PRAGYA_DATA } from '../../data/pragyaData';
+import { getFilteredMatrix, formatPercent, PRAGYA_DATA, getActivityColor } from '../../data/pragyaData';
+import ActivityLegend from '../ActivityLegend';
 import { Users, UserCheck, Info, BarChart2, CalendarCheck } from 'lucide-react';
 import {
   Chart as ChartJS,
@@ -34,8 +35,8 @@ export default function AttendanceTab({ classFilter, activityFilter }) {
     ? (heldItems.reduce((acc, item) => acc + (item.attendancePercent || 0), 0) / heldItems.length)
     : 0;
 
-  // Chart data setup
-  const chartLabels = heldItems.map(item => item.activityName);
+  // Chart data setup with activity-specific colors
+  const chartLabels = heldItems.map(item => `Class ${item.class}: ${item.activityName}`);
   const attendancePercentages = heldItems.map(item => +(item.attendancePercent * 100).toFixed(1));
 
   const chartData = {
@@ -44,8 +45,10 @@ export default function AttendanceTab({ classFilter, activityFilter }) {
       {
         label: 'Attendance Rate (%)',
         data: attendancePercentages,
-        backgroundColor: '#3A3350',
-        hoverBackgroundColor: '#2A2438',
+        backgroundColor: heldItems.map(item => getActivityColor(item.activityId, 'bg')),
+        hoverBackgroundColor: heldItems.map(item => getActivityColor(item.activityId, 'hoverBg')),
+        borderColor: heldItems.map(item => getActivityColor(item.activityId, 'border')),
+        borderWidth: 1.5,
         borderRadius: 6
       }
     ]
@@ -55,16 +58,14 @@ export default function AttendanceTab({ classFilter, activityFilter }) {
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
-      legend: {
-        display: true,
-        position: 'top',
-        labels: {
-          font: { family: 'Inter', weight: '600', size: 12 },
-          color: '#3A3350'
-        }
-      },
+      legend: { display: false },
       tooltip: {
         callbacks: {
+          title: (items) => {
+            const idx = items[0].dataIndex;
+            const item = heldItems[idx];
+            return item ? `Class ${item.class}: ${item.activityName}` : items[0].label;
+          },
           label: (context) => ` Attendance Rate: ${context.parsed.y}%`
         }
       }
@@ -101,7 +102,7 @@ export default function AttendanceTab({ classFilter, activityFilter }) {
         </div>
         <p style={{ fontSize: '0.875rem' }}>
           This tab tracks two distinct headcount metrics: 
-          <strong> Unique Attendance</strong> (the headcount of distinct students present on session day, total 605 across first sessions) and 
+          <strong> Number of Students in Sessions</strong> (the headcount of distinct students present on session day, total 605 across first sessions) and 
           <strong> Cumulative Workshop Headcount</strong> (total student attendances across all sessions including repeated cohort workshops, total 705).
         </p>
       </div>
@@ -109,7 +110,7 @@ export default function AttendanceTab({ classFilter, activityFilter }) {
       {/* Summary Chips for Filtered View */}
       <div className="kpi-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))' }}>
         <div className="kpi-card accent-butter">
-          <div className="kpi-title">Unique Attendance</div>
+          <div className="kpi-title">Number of Students in Sessions</div>
           <div className="kpi-value">{filterAttendanceTotal}</div>
           <div className="kpi-subtitle">Students present for primary session</div>
         </div>
@@ -128,9 +129,12 @@ export default function AttendanceTab({ classFilter, activityFilter }) {
         </div>
 
         {heldItems.length > 0 ? (
-          <div style={{ height: '320px', position: 'relative' }}>
-            <Bar data={chartData} options={chartOptions} />
-          </div>
+          <>
+            <div style={{ height: '320px', position: 'relative' }}>
+              <Bar data={chartData} options={chartOptions} />
+            </div>
+            <ActivityLegend />
+          </>
         ) : (
           <div className="in-progress-card">
             <h4>No Sessions Recorded</h4>
@@ -159,7 +163,7 @@ export default function AttendanceTab({ classFilter, activityFilter }) {
                 <th>Class</th>
                 <th>Activity Name</th>
                 <th>Enrolled Strength</th>
-                <th>Unique Attendance (Count)</th>
+                <th>Number of Students in Sessions</th>
                 <th>Attendance Rate (%)</th>
                 <th>Workshop Headcount (Cumulative)</th>
               </tr>

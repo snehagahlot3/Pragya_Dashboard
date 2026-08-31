@@ -1,5 +1,5 @@
 import React from 'react';
-import { getFilteredMatrix, PRAGYA_DATA, formatValue } from '../../data/pragyaData';
+import { getFilteredMatrix, PRAGYA_DATA, formatValue, getActivityColor } from '../../data/pragyaData';
 import { BookOpen, Calendar, AlertCircle, Info, Hash } from 'lucide-react';
 
 export default function SessionsTab({ classFilter, activityFilter }) {
@@ -101,8 +101,16 @@ export default function SessionsTab({ classFilter, activityFilter }) {
 
         <div className="activity-cards-grid">
           {PRAGYA_DATA.meta.activities.map(act => (
-            <div key={act.id} className="activity-card">
-              <span className="activity-number">Activity {act.id}</span>
+            <div key={act.id} className="activity-card" style={{ borderTop: `4px solid ${getActivityColor(act.id, 'bg')}` }}>
+              <span 
+                className="activity-number"
+                style={{ 
+                  backgroundColor: getActivityColor(act.id, 'bg'), 
+                  color: act.id === 3 ? '#2A2438' : '#FFFFFF' 
+                }}
+              >
+                Activity {act.id}
+              </span>
               <h4 className="activity-name">{act.name}</h4>
               <p className="activity-subtitle">{act.subtitle}</p>
               <p className="activity-desc">{act.desc}</p>

@@ -1,6 +1,7 @@
 import React from 'react';
-import { getOverviewStats, formatPercent, PRAGYA_DATA } from '../../data/pragyaData';
+import { getOverviewStats, formatPercent, PRAGYA_DATA, ACTIVITY_COLORS, getActivityColor } from '../../data/pragyaData';
 import MetricCard from '../MetricCard';
+import ActivityLegend from '../ActivityLegend';
 import { 
   Users, 
   BookOpen, 
@@ -36,7 +37,7 @@ ChartJS.register(
 export default function OverviewTab() {
   const stats = getOverviewStats();
 
-  // Chart data for Overview Summary Metrics
+  // Chart data for Overview Summary Metrics using theme palette
   const chartData = {
     labels: ['Attendance Rate', 'Engagement Rate', 'Comprehension Rate'],
     datasets: [
@@ -47,8 +48,9 @@ export default function OverviewTab() {
           +(stats.overallEngagementRate * 100).toFixed(1),
           +(stats.overallComprehensionRate * 100).toFixed(1)
         ],
-        backgroundColor: ['#3A3350', '#F7E3A1', '#C9C1E3'],
-        borderColor: ['#2A2438', '#E2D191', '#B5ACDA'],
+        backgroundColor: [ACTIVITY_COLORS[1].bg, ACTIVITY_COLORS[2].bg, ACTIVITY_COLORS[3].bg],
+        hoverBackgroundColor: [ACTIVITY_COLORS[1].hoverBg, ACTIVITY_COLORS[2].hoverBg, ACTIVITY_COLORS[3].hoverBg],
+        borderColor: [ACTIVITY_COLORS[1].border, ACTIVITY_COLORS[2].border, ACTIVITY_COLORS[3].border],
         borderWidth: 1.5,
         borderRadius: 8
       }
@@ -102,7 +104,7 @@ export default function OverviewTab() {
         <MetricCard
           title="Total Workshop Headcount"
           value={stats.totalWorkshopHeadcount}
-          subtitle={`Cumulative student attendances (${stats.uniqueAttendanceTotal} unique)`}
+          subtitle={`Cumulative student attendances (${stats.uniqueAttendanceTotal} students in sessions)`}
           icon={UserCheck}
           accent="plum"
         />
@@ -127,9 +129,17 @@ export default function OverviewTab() {
         <h2 className="activity-strip-title">Activities Delivered So Far (3 of Planned Curriculum)</h2>
         <div className="activity-cards-grid">
           {PRAGYA_DATA.meta.activities.map(act => (
-            <div key={act.id} className="activity-card">
+            <div key={act.id} className="activity-card" style={{ borderTop: `4px solid ${getActivityColor(act.id, 'bg')}` }}>
               <div>
-                <span className="activity-number">Activity 0{act.id}</span>
+                <span 
+                  className="activity-number" 
+                  style={{ 
+                    backgroundColor: getActivityColor(act.id, 'bg'), 
+                    color: act.id === 3 ? '#2A2438' : '#FFFFFF' 
+                  }}
+                >
+                  Activity 0{act.id}
+                </span>
                 <h3 className="activity-name">{act.name}</h3>
                 <div className="activity-subtitle">{act.subtitle}</div>
                 <p className="activity-desc">{act.desc}</p>
