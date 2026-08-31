@@ -12,7 +12,7 @@ export const PRAGYA_DATA = {
     activities: [
       { id: 1, name: "Mithu Miyaan", subtitle: "Memorization ≠ Understanding", desc: "A parrot character who remembers things but doesn't understand them, used to introduce the idea that memorization ≠ understanding." },
       { id: 2, name: "Konsa Kiska Ghar", subtitle: "Pattern Matching & Classification", desc: "A 4-hole colour-sorting box game where students match coloured balls to holes, used to introduce pattern-matching/classification." },
-      { id: 3, name: "Aage Kya Aayega", subtitle: "Rules & Algorithms", desc: "Includes a 'robot' role-play where one student writes rules and another (the 'robot') follows only those exact rules, introducing what a machine/rule/algorithm is." }
+      { id: 3, name: "Aage Kya Aayega", subtitle: "Rules & Patterns", desc: "Includes a 'robot' role-play where one student writes rules and another (the 'robot') follows only those exact rules, introducing what a machine/rule/pattern is." }
     ]
   },
 

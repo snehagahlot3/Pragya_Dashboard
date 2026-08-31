@@ -14,7 +14,7 @@ export default function RetentionTab() {
           <h3 style={{ margin: 0, fontSize: '1.1rem' }}>Vocabulary Acquisition & Long-Term Retention Tracking</h3>
         </div>
         <p style={{ fontSize: '0.875rem' }}>
-          This module tracks key vocabulary terms introduced during role-play activities (e.g., <em>Rule</em>, <em>Machine</em>, <em>Robot</em>, <em>Classify</em>) and monitors long-term retention across follow-up evaluation cycles.
+          This module tracks key vocabulary terms introduced during role-play activities (e.g., <em>Rule</em>, <em>Machine</em>, <em>Robot</em>, <em>Pattern</em>, <em>Classify</em>) and monitors long-term retention across follow-up evaluation cycles.
         </p>
       </div>
 
