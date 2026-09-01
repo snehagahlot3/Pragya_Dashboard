@@ -1,7 +1,7 @@
 // STRAVELLE TEAM: update these two numbers once finalized.
 export const SUCCESS_THRESHOLD = {
-  preAssessment: 0.70,   // placeholder — Stravelle team will finalize this number
-  postAssessment: 0.70,  // placeholder — Stravelle team will finalize this number
+  preAssessment: 0.70,   // placeholder - Stravelle team will finalize this number
+  postAssessment: 0.70,  // placeholder - Stravelle team will finalize this number
 };
 
 // Activity Color Palette (Unified across all dashboard bar graphs)
@@ -269,14 +269,14 @@ export function getFilteredMatrix(classFilter = "ALL", activityFilter = "ALL") {
 
 // Formatters
 export function formatPercent(val, decimals = 1) {
-  if (val === null || val === undefined || val === "NOT_YET_COLLECTED") return "—";
+  if (val === null || val === undefined || val === "NOT_YET_COLLECTED") return "-";
   if (typeof val === "string" && val.includes("*")) return val;
   const num = typeof val === "number" ? val : parseFloat(val);
-  if (isNaN(num)) return "—";
+  if (isNaN(num)) return "-";
   return (num * 100).toFixed(decimals) + "%";
 }
 
 export function formatValue(val) {
-  if (val === null || val === undefined || val === "NOT_YET_COLLECTED") return "—";
+  if (val === null || val === undefined || val === "NOT_YET_COLLECTED") return "-";
   return val;
 }

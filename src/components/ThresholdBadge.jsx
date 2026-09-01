@@ -4,11 +4,11 @@ import { CheckCircle2, AlertTriangle } from 'lucide-react';
 
 export default function ThresholdBadge({ rate, thresholdType = 'postAssessment', labelOverride }) {
   if (rate === null || rate === undefined || rate === "NOT_YET_COLLECTED" || typeof rate === 'string') {
-    return <span className="empty-cell">—</span>;
+    return <span className="empty-cell">-</span>;
   }
 
   const numRate = typeof rate === 'number' ? rate : parseFloat(rate);
-  if (isNaN(numRate)) return <span className="empty-cell">—</span>;
+  if (isNaN(numRate)) return <span className="empty-cell">-</span>;
 
   const target = SUCCESS_THRESHOLD[thresholdType] ?? 0.70;
   const isPass = numRate >= target;

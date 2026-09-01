@@ -37,15 +37,15 @@ export default function RawDataTab() {
       r.strength,
       r.activityId,
       `"${r.activityName}"`,
-      r.hasHeld ? r.attendanceCount : '—',
-      r.hasHeld ? formatPercent(r.attendancePercent) : '—',
-      r.hasHeld ? (typeof r.sessionCount === 'string' ? r.sessionCount.replace('*', '') : r.sessionCount) : '—',
-      r.hasHeld ? r.workshopHeadcount : '—',
-      r.hasHeld ? r.engagedCount : '—',
-      r.hasHeld ? formatPercent(r.engagementRate) : '—',
-      r.hasHeld ? r.goodComprehensionCount : '—',
-      r.hasHeld ? formatPercent(r.comprehensionRate) : '—',
-      r.vocabulary && r.vocabulary.length > 0 ? `"${r.vocabulary.join(', ')}"` : '—'
+      r.hasHeld ? r.attendanceCount : '-',
+      r.hasHeld ? formatPercent(r.attendancePercent) : '-',
+      r.hasHeld ? (typeof r.sessionCount === 'string' ? r.sessionCount.replace('*', '') : r.sessionCount) : '-',
+      r.hasHeld ? r.workshopHeadcount : '-',
+      r.hasHeld ? r.engagedCount : '-',
+      r.hasHeld ? formatPercent(r.engagementRate) : '-',
+      r.hasHeld ? r.goodComprehensionCount : '-',
+      r.hasHeld ? formatPercent(r.comprehensionRate) : '-',
+      r.vocabulary && r.vocabulary.length > 0 ? `"${r.vocabulary.join(', ')}"` : '-'
     ]);
 
     const csvContent = 'data:text/csv;charset=utf-8,' + [headers.join(','), ...rows.map(e => e.join(','))].join('\n');
@@ -105,19 +105,19 @@ export default function RawDataTab() {
                   <td><strong>Class {r.class}</strong></td>
                   <td>{r.strength}</td>
                   <td>{r.activityName}</td>
-                  <td>{r.hasHeld ? r.attendanceCount : <span className="empty-cell">—</span>}</td>
-                  <td>{r.hasHeld ? formatPercent(r.attendancePercent) : <span className="empty-cell">—</span>}</td>
-                  <td>{r.hasHeld ? (typeof r.sessionCount === 'string' ? r.sessionCount.replace('*', '') : r.sessionCount) : <span className="empty-cell">—</span>}</td>
-                  <td>{r.hasHeld ? r.workshopHeadcount : <span className="empty-cell">—</span>}</td>
-                  <td>{r.hasHeld ? r.engagedCount : <span className="empty-cell">—</span>}</td>
-                  <td>{r.hasHeld ? formatPercent(r.engagementRate) : <span className="empty-cell">—</span>}</td>
-                  <td>{r.hasHeld ? r.goodComprehensionCount : <span className="empty-cell">—</span>}</td>
-                  <td>{r.hasHeld ? formatPercent(r.comprehensionRate) : <span className="empty-cell">—</span>}</td>
+                  <td>{r.hasHeld ? r.attendanceCount : <span className="empty-cell">-</span>}</td>
+                  <td>{r.hasHeld ? formatPercent(r.attendancePercent) : <span className="empty-cell">-</span>}</td>
+                  <td>{r.hasHeld ? (typeof r.sessionCount === 'string' ? r.sessionCount.replace('*', '') : r.sessionCount) : <span className="empty-cell">-</span>}</td>
+                  <td>{r.hasHeld ? r.workshopHeadcount : <span className="empty-cell">-</span>}</td>
+                  <td>{r.hasHeld ? r.engagedCount : <span className="empty-cell">-</span>}</td>
+                  <td>{r.hasHeld ? formatPercent(r.engagementRate) : <span className="empty-cell">-</span>}</td>
+                  <td>{r.hasHeld ? r.goodComprehensionCount : <span className="empty-cell">-</span>}</td>
+                  <td>{r.hasHeld ? formatPercent(r.comprehensionRate) : <span className="empty-cell">-</span>}</td>
                   <td>
                     {r.vocabulary && r.vocabulary.length > 0 ? (
                       r.vocabulary.join(', ')
                     ) : (
-                      <span className="empty-cell">—</span>
+                      <span className="empty-cell">-</span>
                     )}
                   </td>
                 </tr>

@@ -2,10 +2,10 @@
 
 :root {
   /* Stravelle Official Palette */
-  --plum: #3A3350;        /* Dark Anchor / signature — text, structure, dark backgrounds */
+  --plum: #3A3350;        /* Dark Anchor / signature - text, structure, dark backgrounds */
   --ink: #2A2438;         /* Body copy near-black */
-  --butter: #F7E3A1;      /* Highlight / signature — surface & accent ONLY, never text */
-  --lavender: #C9C1E3;    /* Accent surface — chips, icon backgrounds */
+  --butter: #F7E3A1;      /* Highlight / signature - surface & accent ONLY, never text */
+  --lavender: #C9C1E3;    /* Accent surface - chips, icon backgrounds */
   --pale-lavender: #F3F1F9;  /* Light page background */
   --lavender-card: #EAE6F5;  /* Deeper tint for layered cards */
 

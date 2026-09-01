@@ -35,8 +35,8 @@ export default function SessionsTab({ classFilter, activityFilter }) {
 
     return {
       ...item,
-      sessionCodes: matchingSessionCodes.length > 0 ? matchingSessionCodes.join(', ') : '—',
-      sessionHeadcounts: sessionHeadcounts.length > 0 ? sessionHeadcounts.join(' | ') : '—'
+      sessionCodes: matchingSessionCodes.length > 0 ? matchingSessionCodes.join(', ') : '-',
+      sessionHeadcounts: sessionHeadcounts.length > 0 ? sessionHeadcounts.join(' | ') : '-'
     };
   });
 

@@ -11,7 +11,7 @@ export default function Footer() {
     <footer className="footer-wrapper">
       <div className="footer-content">
         <div>
-          Data current as of <span className="footer-highlight">{currentDate}</span> — <strong>Pragya AI Pilot, Class 1–5</strong>
+          Data current as of <span className="footer-highlight">{currentDate}</span> - <strong>Pragya AI Pilot, Class 1–5</strong>
         </div>
         <div>
           Stravelle AI Literacy Initiative

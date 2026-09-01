@@ -8,7 +8,7 @@ export default function Header() {
       <div className="header-inner">
         <div>
           <div className="brand-badge">
-            <Award size={14} /> Stravelle Private Limited
+            <Award size={14} /> Stravelle
           </div>
           <div className="header-title-group">
             <h1>Pragya AI Pilot Dashboard</h1>

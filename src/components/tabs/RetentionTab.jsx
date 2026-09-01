@@ -67,7 +67,7 @@ export default function RetentionTab() {
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '1.5rem' }}>
         <div className="in-progress-card">
           <div className="in-progress-badge">
-            <Clock size={15} /> In Progress — Scheduled Phase 2
+            <Clock size={15} /> In Progress - Scheduled Phase 2
           </div>
           <h4>Vocabulary Retention Assessment</h4>
           <p style={{ marginTop: '0.5rem', marginBottom: '1rem' }}>
@@ -80,7 +80,7 @@ export default function RetentionTab() {
 
         <div className="in-progress-card">
           <div className="in-progress-badge">
-            <Clock size={15} /> In Progress — Scheduled Phase 2
+            <Clock size={15} /> In Progress - Scheduled Phase 2
           </div>
           <h4>Long-Term Longitudinal Retention</h4>
           <p style={{ marginTop: '0.5rem', marginBottom: '1rem' }}>
