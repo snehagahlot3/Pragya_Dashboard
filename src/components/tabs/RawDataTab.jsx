@@ -45,7 +45,7 @@ export default function RawDataTab() {
       r.hasHeld ? formatPercent(r.engagementRate) : '-',
       r.hasHeld ? r.goodComprehensionCount : '-',
       r.hasHeld ? formatPercent(r.comprehensionRate) : '-',
-      r.vocabulary && r.vocabulary.length > 0 ? `"${r.vocabulary.join(', ')}"` : '-'
+      r.vocabulary && Array.isArray(r.vocabulary) && r.vocabulary.length > 0 ? `"${r.vocabulary.join(', ')}"` : r.vocabulary === 'NA' ? 'N/A' : '-'
     ]);
 
     const csvContent = 'data:text/csv;charset=utf-8,' + [headers.join(','), ...rows.map(e => e.join(','))].join('\n');
@@ -114,8 +114,10 @@ export default function RawDataTab() {
                   <td>{r.hasHeld ? r.goodComprehensionCount : <span className="empty-cell">-</span>}</td>
                   <td>{r.hasHeld ? formatPercent(r.comprehensionRate) : <span className="empty-cell">-</span>}</td>
                   <td>
-                    {r.vocabulary && r.vocabulary.length > 0 ? (
+                    {Array.isArray(r.vocabulary) && r.vocabulary.length > 0 ? (
                       r.vocabulary.join(', ')
+                    ) : r.vocabulary === 'NA' ? (
+                      <span className="empty-cell">N/A</span>
                     ) : (
                       <span className="empty-cell">-</span>
                     )}

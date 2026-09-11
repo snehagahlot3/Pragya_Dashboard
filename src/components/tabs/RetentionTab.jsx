@@ -22,7 +22,7 @@ export default function RetentionTab() {
       <div className="section-card">
         <div className="section-title-group">
           <h3 className="section-title">Vocabulary Introduced by Class & Activity</h3>
-          <p className="section-caption">Core non-technical terminology introduced during experiential workshops.</p>
+          <p className="section-caption">Core non-technical terminology introduced during experiential workshops across all activities.</p>
         </div>
 
         <div className="table-wrapper">
@@ -30,34 +30,41 @@ export default function RetentionTab() {
             <thead>
               <tr>
                 <th>Class</th>
-                <th>Activity Name</th>
-                <th>Terminology Introduced</th>
-                <th>Status</th>
+                {PRAGYA_DATA.meta.activities.map(act => (
+                  <th key={act.id}>Act {act.id}: {act.name}</th>
+                ))}
               </tr>
             </thead>
             <tbody>
-              {matrix.filter(row => row.hasHeld).map((row, idx) => (
-                <tr key={idx}>
-                  <td><strong>Class {row.class}</strong></td>
-                  <td>{row.activityName}</td>
-                  <td>
-                    {row.vocabulary && row.vocabulary.length > 0 ? (
-                      row.vocabulary.map((term, tIdx) => (
-                        <span key={tIdx} className="vocab-chip">
-                          {term}
-                        </span>
-                      ))
-                    ) : (
-                      <span className="empty-cell">Not applicable</span>
-                    )}
-                  </td>
-                  <td>
-                    <span style={{ fontSize: '0.8rem', color: 'var(--plum)', fontWeight: 600 }}>
-                      Session Complete
-                    </span>
-                  </td>
-                </tr>
-              ))}
+              {PRAGYA_DATA.meta.classes.map(c => {
+                const classStr = String(c);
+                const classVocab = PRAGYA_DATA.vocabularyIntroducedByClassByActivity[classStr] || {};
+                return (
+                  <tr key={c}>
+                    <td><strong>Class {c}</strong></td>
+                    {PRAGYA_DATA.meta.activities.map(act => {
+                      const vocab = classVocab[String(act.id)];
+                      return (
+                        <td key={act.id}>
+                          {Array.isArray(vocab) && vocab.length > 0 ? (
+                            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.25rem' }}>
+                              {vocab.map((term, tIdx) => (
+                                <span key={tIdx} className="vocab-chip">
+                                  {term}
+                                </span>
+                              ))}
+                            </div>
+                          ) : vocab === "NA" ? (
+                            <span className="empty-cell">N/A</span>
+                          ) : (
+                            <span className="empty-cell">-</span>
+                          )}
+                        </td>
+                      );
+                    })}
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>

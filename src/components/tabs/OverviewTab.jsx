@@ -126,7 +126,7 @@ export default function OverviewTab() {
 
       {/* Activities Delivered Strip */}
       <div className="activity-strip">
-        <h2 className="activity-strip-title">Activities Delivered So Far (3 of Planned Curriculum)</h2>
+        <h2 className="activity-strip-title">Activities Delivered So Far ({PRAGYA_DATA.meta.activities.length} of Planned Curriculum)</h2>
         <div className="activity-cards-grid">
           {PRAGYA_DATA.meta.activities.map(act => (
             <div key={act.id} className="activity-card" style={{ borderTop: `4px solid ${getActivityColor(act.id, 'bg')}` }}>
@@ -153,7 +153,7 @@ export default function OverviewTab() {
       <div className="section-card">
         <div className="section-title-group">
           <h3 className="section-title">Pilot Key Performance Overview</h3>
-          <p className="section-caption">Aggregated performance indicators comparing attendance, active engagement, and comprehension across all 15 delivered sessions.</p>
+          <p className="section-caption">Aggregated performance indicators comparing attendance, active engagement, and comprehension across all {stats.totalSessions} delivered sessions.</p>
         </div>
 
         <div style={{ height: '320px', position: 'relative' }}>
@@ -163,7 +163,7 @@ export default function OverviewTab() {
         <div className="chart-caption-box">
           <Info size={18} />
           <span>
-            <strong>Summary:</strong> While baseline attendance averages 72.9%, participating students show exceptional engagement (95.7%) and strong conceptual understanding (90.8%) across hands-on AI activities.
+            <strong>Summary:</strong> While baseline attendance averages {formatPercent(stats.overallAttendancePercent)}, participating students show exceptional engagement ({formatPercent(stats.overallEngagementRate)}) and strong conceptual understanding ({formatPercent(stats.overallComprehensionRate)}) across hands-on AI activities.
           </span>
         </div>
       </div>

@@ -102,8 +102,8 @@ export default function AttendanceTab({ classFilter, activityFilter }) {
         </div>
         <p style={{ fontSize: '0.875rem' }}>
           This tab tracks two distinct headcount metrics: 
-          <strong> Number of Students in Sessions</strong> (the headcount of distinct students present on session day, total 605 across first sessions) and 
-          <strong> Cumulative Workshop Headcount</strong> (total student attendances across all sessions including repeated cohort workshops, total 705).
+          <strong> Number of Students in Sessions</strong> (the headcount of distinct students present on session day, total {PRAGYA_DATA.attendanceCountTotal} across sessions) and 
+          <strong> Cumulative Workshop Headcount</strong> (total student attendances across all sessions including repeated cohort workshops, total {PRAGYA_DATA.studentsInWorkshopTotal}).
         </p>
       </div>
 
@@ -145,7 +145,7 @@ export default function AttendanceTab({ classFilter, activityFilter }) {
         <div className="chart-caption-box">
           <Info size={18} />
           <span>
-            <strong>Summary:</strong> Attendance ranged from 62.8% to 85.3% across cohorts, with Class 1 (Activity 3) recording the highest single-session turnout.
+            <strong>Summary:</strong> Attendance averages {formatPercent(PRAGYA_DATA.attendancePercentOverall)} overall across all delivered sessions, with participation reaching up to 91.2% in Class 1 (Activity 5).
           </span>
         </div>
       </div>

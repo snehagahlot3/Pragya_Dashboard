@@ -21,13 +21,7 @@ export default function SessionsTab({ classFilter, activityFilter }) {
     const sessionHeadcounts = [];
 
     Object.entries(classSessionObj).forEach(([code, count]) => {
-      if (actIdStr === '1' && code.startsWith('1.')) {
-        matchingSessionCodes.push(code);
-        sessionHeadcounts.push(`${code}: ${count}`);
-      } else if (actIdStr === '2' && code.startsWith('2.')) {
-        matchingSessionCodes.push(code);
-        sessionHeadcounts.push(`${code}: ${count}`);
-      } else if (actIdStr === '3' && code.startsWith('3.')) {
+      if (code.startsWith(`${actIdStr}.`)) {
         matchingSessionCodes.push(code);
         sessionHeadcounts.push(`${code}: ${count}`);
       }
@@ -49,7 +43,7 @@ export default function SessionsTab({ classFilter, activityFilter }) {
           <h3 style={{ margin: 0, fontSize: '1.1rem' }}>Pilot Workshop & Session Distribution</h3>
         </div>
         <p style={{ fontSize: '0.875rem' }}>
-          A total of <strong>15 workshop sessions</strong> have been delivered across Classes 1–5. Some cohorts received split sessions or make-up workshops to ensure full coverage despite school calendar constraints.
+          A total of <strong>{PRAGYA_DATA.sessionsCountTotal} workshop sessions</strong> have been delivered across Classes 1–5. Some cohorts received split sessions or make-up workshops to ensure full coverage despite school calendar constraints.
         </p>
       </div>
 
