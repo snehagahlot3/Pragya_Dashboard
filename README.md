@@ -1,5 +1,3 @@
-# Pragya Dashboard 
+# Pragya Dashboard
 
-[ ] Add Route 
-
-
+- [ ] Add Route
