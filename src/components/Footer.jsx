@@ -14,7 +14,7 @@ export default function Footer() {
           Data current as of <span className="footer-highlight">{currentDate}</span> - <strong>Pragya AI Pilot, Class 1–5</strong>
         </div>
         <div>
-          Stravelle AI Literacy Initiative
+          © 2026 Stravelle. All rights reserved.
         </div>
       </div>
     </footer>
